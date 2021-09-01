@@ -1,0 +1,28 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Deny",
+            "Action": [
+                "codecommit:MergeBranchesByFastForward",
+                "codecommit:MergeBranchesByThreeWay",
+                "codecommit:MergePullRequestByFastForward",
+                "codecommit:PutFile",
+                "codecommit:GitPush",
+                "codecommit:DeleteBranch"
+            ],
+            "Resource": "arn:aws:codecommit:us-east-1:781212726671:aws-codedeploy-test-repo",
+            "Condition": {
+                "StringEqualsIfExists": {
+                    "codecommit:References": [
+                        "refs/heads/master"
+            ]
+ },
+ "Null": {
+ "codecommit:References": false
+        }
+            }
+        }
+    ]
+}
