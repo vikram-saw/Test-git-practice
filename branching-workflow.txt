@@ -1,0 +1,47 @@
+- How can you restrict deploying code changes (CF Stack Changes) to prod environment only from main branch.
+
+- Merge command :
+	merge : branch-1 to branch-2
+	Local merge : git merge child_branch
+	remote merge : Pull Request -> Reviwer
+
+push : 
+git push origin child_branch # local child_branch --> remote branch-1
+
+pull:
+remote branch-1 to local branch-1
+
+# Creating a child branch from main
+git checkout main
+git branch feature1
+git checkout feature1
+	OR
+git checkout -b feature1
+
+------------------------
+git push 
+	master -> origin/master
+	
+git pull
+	origin/master -> master
+	
+Pull Request:
+	origin/master << origin/child_branch
+
+------------
+# Assuming there are 3 commits in master branch
+git checkout master # (3)
+git branch child_branch # this will create a new branch having 3 commits from master 
+git checkout child_branch # checkout to child_branch in local
+git commit # creating a commit by changing some files (4)
+git commit # creating a commit by changing some files (5)
+
+git push origin child_branch # this will push local to remote child_branch i.e child_branch -> origin/child_branch
+
+Raise a PR : master (3) << child_branch (5)
+Approved and merged : origin/master << child_branch # Here commits from origin/child_branch will be merged into origin/master branch
+
+git checkout master # Checkout to master branch locally
+git pull origin master # Since Upstream remote branch i.e origin/master branch is merged with child_branch, the local master branch needs to have those commits to i.e origin/master -> master
+	
+Note : If u don't take the latest pull of origin branch to local before creating a new branch, the new child branch might have older code, hence git pull should be used to sync branches from remote to local repository.
