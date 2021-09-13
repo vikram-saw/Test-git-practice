@@ -1,1 +1,3 @@
+ls -ltR
+printenv
 this is our first website ..Welcome to IT world
